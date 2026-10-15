@@ -10,8 +10,9 @@ function nArray($array, $n): bool
             $cont++;
         }
     }
-    return $cont > 1;
+    return $cont === 1;
 }
+
 
 foreach ($array1 as $value) {
     if (nArray($array1, $value)) {

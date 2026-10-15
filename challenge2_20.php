@@ -1,19 +1,15 @@
 <?php
 
-$array1 = [1,2,3,1,3,5,4,3,7,2,6];
+$array1 = [1,2,3,1,3,5,1,2,1,4,3];
 
-function nArray($array, $n)
+function isBulkiest($array, $i): bool
 {
-    for ($i = $n + 1; $i < count($array); $i++) {
-        if ($array[$i] > $n) {
-            return false;
-        }
-    }
-    return true;
+    return isset($array[$i + 1]) && $array[$i] > $array[$i + 1];
 }
 
-foreach ($array1 as $value) {
-    if (nArray($array1, $value)) {
-        echo "$value is BULKIEST \n";
+
+foreach ($array1 as $i => $value) {
+    if (isBulkiest($array1, $i)) {
+        echo "$value is Bulkiest \n";
     }
 }
