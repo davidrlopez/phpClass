@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <form action="challenge2_28.php" method="post">
+      <label for="fullName">Full name:</label>
+      <input type="text" id="fullName" name="fullName" required />
+      <label
+        ><input type="checkbox" name="source[]" value="search" /> Search
+        engine</label
+      >
+      <label
+        ><input type="checkbox" name="source[]" value="social" /> Social
+        media</label
+      >
+      <label
+        ><input type="checkbox" name="source[]" value="friends" /> Friends or
+        family</label
+      >
+      <label><input type="checkbox" name="source[]" value="AI" /> AI</label>
+      <label
+        ><input type="checkbox" name="source[]" value="other" /> Other</label
+      >
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>

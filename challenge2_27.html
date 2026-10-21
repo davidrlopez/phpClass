@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
+  <body>
+    <form action="challenge2_27.php" method="post">
+      <label for="firstOp">First operand</label>
+      <input type="number" step="any" id="firstOp" name="firstOp" required />
+      <label for="selected">Operation</label>
+      <select id="selected" name="selected">
+        <option value="+">+</option>
+        <option value="/">/</option>
+        <option value="X">X</option>
+        <option value="-">-</option>
+      </select>
+      <label for="secondOp">Second operand</label>
+      <input type="number" step="any" id="secondOp" name="secondOp" required />
+      <button type="submit">Send</button>
+      <output for="firstOp secondOp">Result:<?= $result ?? "" ?></output>
+    </form>
+  </body>
+</html>
