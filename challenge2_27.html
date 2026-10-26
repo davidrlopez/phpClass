@@ -8,18 +8,27 @@
   <body>
     <form action="challenge2_27.php" method="post">
       <label for="firstOp">First operand</label>
-      <input type="number" step="any" id="firstOp" name="firstOp" required />
+      <input
+        type="number"
+        step="any"
+        id="firstOp"
+        name="firstOp"
+        value="<?= $firstOp ?? "" ?>"
+        required
+      />
       <label for="selected">Operation</label>
-      <select id="selected" name="selected">
+      <select id="selected" name="selected" value="<?= $opType ?? "" ?>">
         <option value="+">+</option>
         <option value="/">/</option>
         <option value="X">X</option>
         <option value="-">-</option>
       </select>
       <label for="secondOp">Second operand</label>
-      <input type="number" step="any" id="secondOp" name="secondOp" required />
+      <input type="number" step="any" id="secondOp" name="secondOp" value="<?= $secondOp ?? "" ?>" required />
       <button type="submit">Send</button>
-      <output for="firstOp secondOp">Result:<?= $result ?? "" ?></output>
+      <label for="result">Result</label>
+      <input type="text" name="result" value="<?= $result ?? "" ?>" />
+      <output for="firstOp secondOp"></output>
     </form>
   </body>
 </html>
