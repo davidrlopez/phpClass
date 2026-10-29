@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="clase">
+  <rule ref="PSR12">
+    <!-- los ejercicios de clase no usan namespaces y meten varias clases por archivo -->
+    <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+    <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
+  </rule>
+</ruleset>
