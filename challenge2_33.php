@@ -1,74 +1,64 @@
 <?php
 
-class Product
+abstract class Product
 {
     protected $name;
     protected $basePrice;
-    public $discount = 0;
-    public $prepFee = 0;
-    public $shipCost = 0;
-    public static $products = [];
 
     public function __construct($name, $basePrice)
     {
         $this->name = $name;
         $this->basePrice = $basePrice;
-        self::$products[] = $this;
     }
-    public function calcPrice()
+
+    public function getName()
     {
-        return $this->basePrice * (1 - $this->discount) + $this->prepFee + $this->shipCost;
+        return $this->name;
     }
+
+    abstract public function calcPrice();
 }
 
 class Physical extends Product
 {
-    public $shipCost = 5;
-    public static $physicals = [];
-    public function __construct($name, $basePrice)
+    protected $shipCost = 5;
+
+    public function calcPrice()
     {
-        parent::__construct($name, $basePrice);
-        self::$physicals[] = $this;
+        return $this->basePrice + $this->shipCost;
     }
 }
 
 class Digital extends Product
 {
-    public $discount = 0.1;
-    public static $digitals = [];
+    protected $discount = 0.1;
 
-    public function __construct($name, $basePrice)
+    public function calcPrice()
     {
-        parent::__construct($name, $basePrice);
-        self::$digitals[] = $this;
+        return $this->basePrice * (1 - $this->discount);
     }
 }
 
 class Used extends Product
 {
-    public $prepFee = 3;
-    public static $used = [];
-    public $discount = 0.2;
+    protected $discount = 0.2;
+    protected $prepFee = 3;
 
-    public function __construct($name, $basePrice)
+    public function calcPrice()
     {
-        parent::__construct($name, $basePrice);
-        self::$used[] = $this;
+        return $this->basePrice * (1 - $this->discount) + $this->prepFee;
     }
 }
 
-$phy1 = new Physical("book", 20);
-$dig1 = new Digital("ebook", 20);
-$us1 = new Used("tool", 20);
-
-printf("Physical 1:{$phy1->calcPrice()}\nDigital:{$dig1->calcPrice()}\nUsed:{$us1->calcPrice()}\n");
-printf("Total products:%d\n", count(Product::$products));
-printf("Total physicals:%d\n", count(Physical::$physicals));
-printf("Total digitals:%d\n", count(Digital::$digitals));
-printf("Total used:%d\n", count(Used::$used));
+$products = [
+    new Physical("book", 20),
+    new Digital("ebook", 20),
+    new Used("tool", 20),
+];
 
 $total = 0;
-foreach (Product::$products as $product) {
+foreach ($products as $product) {
+    printf("%s: %.2f\n", $product->getName(), $product->calcPrice());
     $total += $product->calcPrice();
 }
-printf("Total price:%.2f\n", $total);
+printf("Total price: %.2f\n", $total);
