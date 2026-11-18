@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>register</title>
+  </head>
+  <body>
+    <?php if ($step === 1): ?>
+    <form action="challenge3_2.php?step=1" method="post">
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        value="<?= htmlspecialchars($_SESSION['wizard']['name'] ?? '') ?>"
+      />
+      <input
+        type="text"
+        name="email"
+        placeholder="Email"
+        value="<?= htmlspecialchars($_SESSION['wizard']['email'] ?? '') ?>"
+      />
+      <input
+        type="text"
+        name="phone"
+        placeholder="Phone"
+        value="<?= htmlspecialchars($_SESSION['wizard']['phone'] ?? '') ?>"
+      />
+      <button type="submit" name="next">Studies</button>
+    </form>
+    <?php elseif ($step === 2): ?>
+    <form action="challenge3_2.php?step=2" method="post">
+      <input
+        type="text"
+        name="cycle"
+        placeholder="Cycle"
+        value="<?= htmlspecialchars($_SESSION['wizard']['cycle'] ?? '') ?>"
+      />
+      <input
+        type="text"
+        name="year"
+        placeholder="Year"
+        value="<?= htmlspecialchars($_SESSION['wizard']['year'] ?? '') ?>"
+      />
+      <input
+        type="text"
+        name="modules"
+        placeholder="Modules"
+        value="<?= htmlspecialchars($_SESSION['wizard']['modules'] ?? '') ?>"
+      />
+      <button type="submit" name="next">Summary</button>
+      <button type="submit" name="back">Back</button>
+    </form>
+    <?php elseif ($step === 3): ?>
+    <ul>
+      <?php foreach ($_SESSION['wizard'] ?? [] as $key =>
+      $value): ?>
+      <li>
+        <?= $key ?>:
+        <?= htmlspecialchars($value) ?>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+    <form action="challenge3_2.php?step=3" method="post">
+      <button type="submit" name="confirm">Confirm</button>
+      <button type="submit" name="back">Back</button>
+    </form>
+    <?php elseif ($step === 4): ?>
+    <p>Registration completed.</p>
+    <?php endif; ?>
+  </body>
+</html>
